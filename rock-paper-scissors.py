@@ -2,6 +2,13 @@ from tkinter import *
 from tkinter import messagebox
 import random
 from PIL import Image, ImageTk 
+import sys
+import os
+
+def resource_path(relative_path):
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
 
 root = Tk()
 root.geometry("300x200")
@@ -26,9 +33,9 @@ computer_value = {
 
 
 # Завантаження зображень
-rock_img = ImageTk.PhotoImage(Image.open("rock-paper-scissors\Камінь1.png").resize((120, 120)))
-scissors_img = ImageTk.PhotoImage(Image.open("rock-paper-scissors\Ножниці1.png").resize((120, 120)))
-paper_img = ImageTk.PhotoImage(Image.open("rock-paper-scissors\Папір1.png").resize((120, 120)))
+rock_img = ImageTk.PhotoImage(Image.open(resource_path("images/Камінь1.png")).resize((120, 120)))
+scissors_img = ImageTk.PhotoImage(Image.open(resource_path("images/Ножниці1.png")).resize((120, 120)))
+paper_img = ImageTk.PhotoImage(Image.open(resource_path("images/Папір1.png")).resize((120, 120)))
 
 game_window = None
 settings_window = None
@@ -176,7 +183,7 @@ def open_game_window():
             match_result = "Ви виграли!"
             player_wins += 1
         else:
-            match_result = "Виграв комп'ютер..."
+            match_result = "Виграв комп'ютер..." 
             computer_wins += 1
         winloselabel.config(text=match_result)
         label1.config(text=player_choice)
@@ -206,9 +213,9 @@ def open_game_window():
     frame1 = Frame(game_window)
     frame1.pack(expand=True, fill=BOTH)
 
-    label1 = Label(frame, text="Гравець", font=10)
-    label2 = Label(frame, text="VS", font="normal 10 bold")
-    label3 = Label(frame, text="Комп'ютер", font=10)
+    label1 = Label(frame, text="Гравець", font=20, fg="blue")
+    label2 = Label(frame, text="VS", font="normal 20 bold")
+    label3 = Label(frame, text="Комп'ютер", font=20, fg="red")
 
     label1.pack(side=LEFT, expand=True, fill=BOTH)
     label2.pack(side=LEFT, expand=True, fill=BOTH)
@@ -232,7 +239,7 @@ def open_game_window():
     button2.pack(side=LEFT, padx=10, expand=True, fill=BOTH)
     button3.pack(side=LEFT, padx=10, expand=True, fill=BOTH)
 
-    Button(game_window, text="Перезапустити гру", font=10, fg="red", bg="black", command=reset_game).pack(pady=20, expand=True, fill=BOTH)
+    Button(game_window, text="Перезапустити гру", font=20, fg="black", bg="pink", command=reset_game).pack(pady=20, expand=True)
 
 # Головне вікно з кнопкою для початку гри
 Label(root, text=" ").pack(pady=5)
