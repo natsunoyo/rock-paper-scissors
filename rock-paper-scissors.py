@@ -2,13 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 import random
 from PIL import Image, ImageTk 
-import sys
-import os
-
-def resource_path(relative_path):
-    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-    return os.path.join(base_path, relative_path)
-
 
 root = Tk()
 root.geometry("300x200")
@@ -33,9 +26,9 @@ computer_value = {
 
 
 # Завантаження зображень
-rock_img = ImageTk.PhotoImage(Image.open(resource_path("images/Камінь1.png")).resize((120, 120)))
-scissors_img = ImageTk.PhotoImage(Image.open(resource_path("images/Ножниці1.png")).resize((120, 120)))
-paper_img = ImageTk.PhotoImage(Image.open(resource_path("images/Папір1.png")).resize((120, 120)))
+rock_img = ImageTk.PhotoImage(Image.open("images/Камінь1.png").resize((120, 120)))
+scissors_img = ImageTk.PhotoImage(Image.open("images/Ножниці1.png").resize((120, 120)))
+paper_img = ImageTk.PhotoImage(Image.open("images/Папір1.png").resize((120, 120)))
 
 game_window = None
 settings_window = None
@@ -84,7 +77,7 @@ def start_game(settings_window):
 def open_game_window():
     global game_window
     game_window = Toplevel(root)
-    game_window.geometry("600x700")
+    game_window.geometry("550x650")
     Label(game_window, text="Камінь, ножиці, папір", font="normal 20 bold", fg="blue").pack(pady=20)
     game_window.columnconfigure(0, weight=1)
     game_window.rowconfigure(0, weight=1)
